@@ -22,22 +22,17 @@ export class SecondPage {
     *  this works only for data flow from 1>2, 1>3, 2>3 but not 1<3 meaning data can not be
     *  recieved backwords. To do that 1<>2 , 2<>3 we have to use modules.
     **/
-
+    console.log(this.navParams.get('title'));
   }
   closeModal(){
+    // taking information into new variables
     let data = {
     title: 'yammy dish',
-    ingrediants:[
-        'butter',
-        'flour',
-        'Suger',
-        'oil'
-      ],
-    time: '10 mins'
-      };
+    message: 'how are you'};
+
     this.viewCtrl.dismiss(data);
   }
  // Now, another way to share data anywhere in the app is using PROVIDER.
-  
+
 
 }
