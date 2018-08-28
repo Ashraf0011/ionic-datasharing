@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, Events } from 'ionic-angular';
 import { SecondPage } from '../second/second';
 import { UserProvider } from '../../providers/user/user';
+
 
 @Component({
   selector: 'page-home',
@@ -9,19 +10,17 @@ import { UserProvider } from '../../providers/user/user';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController,public modalCtrl: ModalController, public userService: UserProvider) {
+  constructor(public navCtrl: NavController,public modalCtrl: ModalController, public userService: UserProvider, public events: Events) {}
 
-  }
-  launchSecondPage(){
 
-    let modal = this.modalCtrl.create(SecondPage);
-    // now to send response back to first page ...
-    modal.onDidDismiss((data, role) =>{
+  ionViewDidLoad(){
+    this.events.subscribe('recipe:added',(data) =>{
       console.log(data);
-    } );
+    });
+  }
 
-
-
+  launchSecondPage(){
+    let modal = this.modalCtrl.create(SecondPage);
     modal.present();
   }
 
